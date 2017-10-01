@@ -1,0 +1,18 @@
+{
+    "main": {
+        "name": "alpha",
+        "cluster": {
+            "on": true
+        }
+    },
+    "app": {
+        "api": {
+            "detail": {
+                "url": "http://alpha-url.com",
+                "resultProperties": {
+                    "raw_dealername": "mare"
+                }
+            }
+        }
+    }
+}

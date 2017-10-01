@@ -1,0 +1,26 @@
+<!-- ClientSideError script is injected by Rhema -->
+<script>
+    // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror
+    window.onerror = function (message, url, lineNumber, column, errorObj) {
+        // skipping 'Script error' that doesn't give use any usefull information
+        // usually throwed by older browsers
+        if (typeof message !== 'undefined' && message.indexOf('Script error.') !== 0) {
+            var xhr = new XMLHttpRequest();
+            // send errors to clientSideError which will do logger.error
+            // and send data to syslog
+            xhr.open('POST', '<%= routePath %>', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.send('data=' + JSON.stringify({
+                message: encodeURIComponent(message.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ')),
+                fileName: encodeURIComponent(url),
+                lineNumber: lineNumber,
+                column: column,
+                errorObj: errorObj,
+                width: document.body.clientWidth || screen.width,
+                height: document.body.clientHeight || screen.height,
+                useragent: encodeURIComponent(navigator.userAgent),
+                url: encodeURIComponent(location.href)
+            }));
+        }
+    };
+</script>

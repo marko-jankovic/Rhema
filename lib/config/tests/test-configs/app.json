@@ -1,0 +1,18 @@
+{
+
+    "vhosts": [
+        "localhost",
+        "boilerplate.test-local.test.com",
+        "boilerplate.test-alpha.test.com",
+        "boilerplate.test-beta.test.com"
+    ],
+    "templates": {
+        "defaultLayout": "main",
+        "extname": "html",
+        "layoutsDir": "./app/views/layouts/",
+        "partialsDir": [
+            "./app/views/",
+            "./app/views/shared"
+        ]
+    }
+}

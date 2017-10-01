@@ -1,0 +1,120 @@
+<!-- Beatle script is injected by Rhema -->
+<div class="Beatle">
+    <a class="Beatle-toggle" href="#" data-toggle-beatle>Toggle Beatle</a>
+
+    <ul class="Beatle-categories" data-beatle-categories>
+        <% _.forEach(beatle, function (value, key) { %>
+            <li class="Beatle-categoryItem<% if (key == 'apiUrls') { %> is-active<% } %>">
+                <%= key %>
+            </li>
+        <% }); %>
+        <li class="Beatle-categoryItem">
+            viewModel
+        </li>
+    </ul>
+
+    <div class="Beatle-pre" data-beatle-categories-content>
+        <% _.forEach(beatle, function (value, key) { %>
+            <code class="Beatle-code<% if (key == 'apiUrls') { %> is-active<% } %>" beatle-name='<%= key %>'>
+                <pre><%= value %></pre>
+            </code>
+        <% }); %>
+        <code class="Beatle-code" beatle-name='viewModel'>
+            <pre><%= viewmodel %></pre>
+        </code>
+    </div>
+</div>
+
+<style>
+    .Beatle {
+        left: 0;
+        right: 0;
+        top: 10vh;
+        bottom: 0;
+        z-index: 9999;
+        text-align: left;
+        position: fixed;
+        border-top: 1px solid #000;
+        background: white;
+        padding: 20px;
+    }
+
+    .Beatle.is-hidden {
+        height: 20px;
+        bottom: 0;
+        top: 100%;
+    }
+    
+    .Beatle-pre,
+    .Beatle-code {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        word-wrap: break-word;
+        overflow: auto;
+        font-size: 12px;
+    }
+
+    .Beatle-code {
+        padding: 0 0 100px;
+        display: none;
+    }
+
+    .Beatle-code.is-active {
+        display: block;
+    }
+
+    .Beatle-toggle {
+        height: 32px;
+        position: absolute;
+        top: -32px;
+        right: 20px;
+        line-height: 1.5;
+        padding: 5px 10px;
+        background: black;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .Beatle-categoryItem {
+        display: inline-block;
+        cursor: pointer;
+        padding: 0.5em 1em;
+        background: black;
+        color: white;
+    }
+
+    .Beatle-categoryItem.is-active {
+        background: #4e84c4;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // bind event for show/hide beatle
+        document.querySelector('[data-toggle-beatle]').addEventListener('click', function() {
+            document.querySelector('.Beatle').classList.toggle('is-hidden');
+        });
+
+        var navigationLinks = Array.from(document.querySelectorAll('[data-beatle-categories] li'));
+        navigationLinks.forEach((element) => {
+            element.addEventListener('click', function(el) {
+                navigationLinks.forEach(function(el) {
+                    //Make no links active
+                    el.classList.remove("is-active");
+                });
+
+                //Make clicked link active
+                this.classList.toggle('is-active');
+
+                //Hide all code sections
+                [].forEach.call( document.querySelectorAll(".Beatle-code") , function(el) {
+                    el.classList.remove("is-active");
+                }); 
+                
+                //get the code section by the name and show it
+                document.querySelector(`[beatle-name="` + this.innerHTML.trim() + `"]`).classList.add("is-active");
+            });
+        });
+    })
+</script>

@@ -1,0 +1,33 @@
+{
+    "rules": {
+        "rousseau": {
+            "severity": "warning",
+            "showLevels": ["suggestion", "warning", "error"],
+            "ignoreTypes": ["passive", "readibility", "weasel", "adverbs"]
+        },
+        "alex": {
+            "allow": [],
+            "severity": "warning",
+        },
+        "spellchecker": {
+            "allow": [],
+            "severity": "warning",
+        },
+        "terminology": {
+            "terms": [
+                "JavaScript",
+                "ESLint",
+                "Sass",
+                "Less",
+                "npm"
+            ]
+        },
+        "write-good": {
+            "severity": "warning",
+            "passive": false
+        },
+        "common-misspellings": {
+            "ignore": []
+        }
+    }
+}

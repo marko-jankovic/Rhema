@@ -1,0 +1,9 @@
+{
+    "defaults": {
+        "name": "rhema",
+        "api": {
+            "key": "12215111391221591161211",
+            "url": "http://test.com/listings/-/cars"
+        }
+    }
+}

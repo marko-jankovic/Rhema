@@ -1,0 +1,17 @@
+{
+    "topCities": {
+        "path": "./app/plugins/topCities",
+        "method": "TopCities",
+        "options": {
+            "url": "{% defaults.api.url %}",
+            "apikey": "{% defaults.api.key %}"
+        }
+    },
+    "topYears": {
+        "path": "./app/plugins/topYears",
+        "options": {
+            "url": "{% defaults.api.url %}",
+            "apikey": "{% defaults.api.key %}"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "defaults": {
+        "name": "aol",
+        "api": {
+            "key": "10615895312041531391111111111111",
+            "url": "http://aloha.cars.data.com/listings/-/cars"
+        }
+    },
+    "app": {
+        "vhosts": [
+            "{% defaults.name %}.test-local.test.com",
+            "{% defaults.name %}.test-alpha.test.com",
+            "{% defaults.name %}.test-beta.test.com"
+        ]
+    }
+}

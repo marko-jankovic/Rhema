@@ -1,0 +1,474 @@
+{
+    "framework": {
+        "server": {
+            "name": "Rhema",
+            "port": 8080,
+            "host": "127.0.0.1",
+            "rebootApp": {
+                "timeout": "{% 30 seconds | toMs %}",
+                "enabled": true
+            },
+            "gracefulRestart": {
+                "events": ["memoryUpperBound"],
+                "timeout": "{% 30 seconds | toMs %}"
+            }
+        },
+        "cluster": {
+            "envLevel": "!dev",
+            "workers": 4,
+            "forkDelay": "{% 15 seconds | toMs %}",
+            "forkThrottle": true,
+            "schedulingPolicy": "SCHED_RR",
+            "killSignals": ["SIGINT", "SIGTERM", "SIGQUIT"],
+            "export": "build/profiler/info.json",
+            "setupMaster": {
+                "args": ["--use", "https"],
+                "silent": true
+            }
+        },
+        "security": {
+            "basicAuth": null
+        },
+        "logger": {
+            "settings": {
+                "formats": {
+                    "default": "{{timestamp}} {{hostname}} {{namespace}}: {{title}} {{requestId}} {{message}} (#pid {{processId}})",
+                    "error": "{{timestamp}} {{hostname}} {{namespace}}: {{title}} {{requestId}} {{message}} {{path}} (#pid {{processId}})\nCall Stack:\n{{stack}}"
+                },
+                "dateformat": "mmm dd HH:MM:ss",
+                "strategy": "console",
+                "level": "log",
+                "methods": ["log", "trace", "debug", "info", "warn", "error"],
+                "namespace": "{% framework.server.name %}"
+            },
+            "transports": {
+                "beatle": {
+                    "path": "./lib/logger/lib/beatle.js",
+                    "options": {
+                        "blackList": ["debug"]
+                    }
+                },
+                "syslog": {
+                    "path": "./lib/logger/lib/syslog.js",
+                    "envLevel": "!dev",
+                    "options": {
+                        "blackList": ["debug"],
+                        "port": 514,
+                        "facility": 17,
+                        "tag": "{% framework.server.name %}"
+                    }
+                },
+                "console": {
+                    "path": "./lib/logger/lib/console.js",
+                    "envLevel": "dev",
+                    "options": {
+                        "depth": null
+                    }
+                },
+                "errorCatcher": {
+                    "path": "./lib/logger/lib/errorCatcher.js",
+                    "options": {
+                        "interval": "{% 10 minutes | toMs %}",
+                        "export": "./build/profiler/syslog-errors.txt"
+                    }
+                },
+                "errorNotifier": {
+                    "envLevel": "dev",
+                    "path": "./lib/logger/lib/errorNotifier.js",
+                    "options": {
+                        "title": "{% framework.server.name %}",
+                        "whiteList": ["error"]
+                    }
+                }
+            }
+        },
+        "metrics": {
+            "port": 8125,
+            "host": "statsd.oak.vast.com",
+            "graphiteUrl": "http://graphite.vast.com",
+            "namespace": "nodejs.{% framework.server.name %}",
+            "aliases": {},
+            "client": {
+                "module": "node-statsd",
+                "method": "StatsD"
+            }
+        },
+        "latency": {
+          "envLevel": "!dev",
+          "ignore": []
+        },
+        "profiler": {
+            "memory": {
+                "envLevel": "!dev",
+                "thresholdIndex": 600,
+                "thresholdIncrement": 50,
+                "upperBounds": 1000,
+                "pollInterval": "{% 15 seconds | toMs %}",
+                "generateFlame": true,
+                "processMessage": "MEMORY-SNAPSHOT",
+                "mwMaxSnapshots": 10,
+                "mwConsecutiveGrowthLimit": 10,
+                "mwRecentPeriod": 15,
+                "mwAncientPeriod": 140,
+                "mwExtremesPeriod": 4,
+                "export": {
+                    "main": "build/profiler/heapsnapshot",
+                    "info": "build/profiler/info.json"
+                }
+            },
+            "cpu": {
+                "envLevel": "!dev",
+                "maxSnapshots": 10,
+                "profilingTime": "{% 5 seconds | toMs %}",
+                "timeOutInterval": "{% 5 minutes | toMs %}",
+                "export": {
+                    "main": "build/profiler/cpuprofile"
+                }
+            }
+        }
+    },
+    "app": {
+        "vhosts": ["localhost"],
+        "middlewares": {
+            "preDispatch": {
+                "compression": {
+                    "path": "compression",
+                    "options": {"threshold": 9}
+                },
+                "basicAuth": {
+                    "envLevel": "prod",
+                    "path": "./lib/middleware/lib/preDispatch/basicAuth.js",
+                    "options": {
+                        "password": "{% framework.security.basicAuth %}",
+                        "routes": {
+                            "profiler": "/profiler",
+                            "core": "/core",
+                            "beatle": "[\\?&]beatle=",
+                            "broadcast": "[\\?&]broadcast="
+                        }
+                    }
+                },
+                "staticInfo": {
+                    "path": "./lib/middleware/lib/preDispatch/staticInfo.js"
+                },
+                "build-files": {
+                    "path": "serve-static",
+                    "options": ["build", {
+                        "maxAge": "15d",
+                        "index": false,
+                        "etag": true,
+                        "dotfiles": "deny",
+                        "lastModified": true,
+                        "redirect": false
+                    }]
+                },
+                "static-files": {
+                    "path": "serve-static",
+                    "options": ["static", {
+                        "maxAge": "15d",
+                        "index": false,
+                        "etag": true,
+                        "dotfiles": "deny",
+                        "lastModified": true,
+                        "redirect": false
+                    }]
+                },
+                "dynamic-files": {
+                    "path": "serve-static",
+                    "options": ["dynamic", {
+                        "maxAge": "10m",
+                        "index": false,
+                        "etag": true,
+                        "dotfiles": "deny",
+                        "lastModified": true,
+                        "redirect": false
+                    }]
+                },
+                "serve-favicon": {
+                    "path": "./lib/middleware/lib/preDispatch/serve-favicon.js",
+                    "options": ["./build/img/favicon.ico", {
+                        "subdomainFolder": "./build/img/favicons"
+                    }]
+                },
+                "cacheBuster": {
+                    "path": "./lib/middleware/lib/preDispatch/cacheBuster.js"
+                }
+            },
+            "routeInvoked": {
+                "requestTime": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/requestTime.js"
+                },
+                "sanitizeRequest": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/preDispatch/sanitizeRequest.js",
+                    "protectArguments": false,
+                    "options": {
+                        "reqFields": ["url", "params", "query", "queryAndParams", "body"],
+                        "xssOptions": {}
+                    }
+                },
+                "redirect": {
+                    "envLevel": "prod",
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/redirect.js",
+                    "options": {
+                        "forceWww": false,
+                        "forceSecure": false,
+                        "trailingSlash": true
+                    }
+                },
+                "setNamespaces": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/preDispatch/setNamespaces.js"
+                },
+                "setHeaders": {
+                    "routes": ["!cache"],
+                    "path": "./lib/middleware/lib/routeInvoked/setHeaders.js",
+                    "options": {
+                        "Cache-Control": "no-cache, no-store",
+                        "Content-Type": "text/html; charset=utf-8"
+                    }
+                },
+                "catchException": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/catchException.js"
+                },
+                "cookie-parser": {
+                    "routes": ["*"],
+                    "path": "cookie-parser",
+                    "options": [false, {}]
+                },
+                "method-override": {
+                    "routes": ["*"],
+                    "options": ["_method"],
+                    "path": "method-override"
+                },
+                "cors": {
+                    "routes": ["*"],
+                    "path": "cors",
+                    "protectArguments": false,
+                    "options": {
+                      "origin": "*",
+                      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+                      "preflightContinue": false,
+                      "optionsSuccessStatus": 204
+                    }
+                },
+                "helmet-hsts": {
+                    "routes": ["*"],
+                    "path": "helmet",
+                    "method": "hsts",
+                    "options": {
+                        "maxAge": "{% 90 days | toMs %}",
+                        "includeSubdomains": true,
+                        "preload": true
+                    }
+                },
+                "helmet-frameguard": {
+                    "routes": ["*"],
+                    "path": "helmet",
+                    "method": "frameguard",
+                    "options": ["deny"]
+                },
+                "helmet-xssFilter": {
+                    "routes": ["*"],
+                    "path": "helmet",
+                    "method": "xssFilter"
+                },
+                "helmet-ieNoOpen": {
+                    "routes": ["*"],
+                    "path": "helmet",
+                    "method": "ieNoOpen"
+                },
+                "csrf": {
+                    "routes": ["!clientSideError"],
+                    "path": "csurf",
+                    "options": {
+                        "cookie": true
+                    }
+                },
+                "statusInfo": {
+                    "routes": ["status"],
+                    "path": "./lib/middleware/lib/routeInvoked/statusInfo.js",
+                    "options": {
+                        "path": "{% framework.cluster.export %}"
+                    }
+                },
+                "processMessages": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/processMessages.js",
+                    "options": {
+                        "queryName": "broadcast",
+                        "queryWhiteList": [
+                            "REFRESH-CACHE", "MEMORY-SNAPSHOT"
+                        ]
+                    }
+                },
+                "getClientIp": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/getClientIp.js",
+                    "options": {
+                        "proxy": false,
+                        "defaultIP": false
+                    }
+                },
+                "mergeParams": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/mergeParams.js",
+                    "options": {
+                        "blackList": ["format", "beatle"]
+                    }
+                },
+                "timingHeader": {
+                    "routes": ["*"],
+                    "disabled": true,
+                    "path": "./lib/middleware/lib/routeInvoked/timingHeader.js"
+                },
+                "requestInfo": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/requestInfo.js"
+                }
+            },
+            "routeError": {
+                "notFound": {
+                    "path": "./lib/middleware/lib/routeError/notFound.js"
+                },
+                "internalError": {
+                    "path": "./lib/middleware/lib/routeError/internalError.js"
+                }
+            },
+            "beforeRender": {
+                "attachBeatleData": {
+                    "path": "./lib/middleware/lib/beforeRender/attachBeatleData.js",
+                    "options": {
+                        "mergeWithData": true
+                    }
+                },
+                "attachQueryValue": {
+                    "path": "./lib/middleware/lib/beforeRender/attachQueryValue.js",
+                    "options": {
+                        "queryWhiteList": [
+                            "skipExternals"
+                        ]
+                    }
+                },
+                "attachReqField": {
+                    "path": "./lib/middleware/lib/beforeRender/attachReqField.js",
+                    "options": {
+                        "reqWhiteList": ["page"],
+                        "reqWhiteMap": {"csrfToken": "csrf"}
+                    }
+                },
+                "showOnly": {
+                    "path": "./lib/middleware/lib/beforeRender/showOnly.js",
+                    "options": {
+                        "queryName": "showOnly"
+                    }
+                },
+                "excludeOnly": {
+                    "path": "./lib/middleware/lib/beforeRender/excludeOnly.js",
+                    "options": {
+                        "queryName": "excludeOnly"
+                    }
+                },
+                "cleanupViewmodel": {
+                    "path": "./lib/middleware/lib/beforeRender/cleanupViewmodel.js",
+                    "options": { "blackList": [] }
+                }
+            },
+            "afterRender": {
+                "insertBeatleTemplate": {
+                    "path": "./lib/middleware/lib/afterRender/insertBeatleTemplate.js",
+                    "options": {
+                        "template": "./assets/html/beatle.html"
+                    }
+                },
+                "insertOnErrorHandler": {
+                    "path": "./lib/middleware/lib/afterRender/insertOnErrorHandler.js",
+                    "options": {
+                        "template": "./assets/html/clientSideError.html",
+                        "routePath": "/core/clientSideError"
+                    }
+                },
+                "minifyHTML": {
+                    "enabled": false,
+                    "path": "./lib/middleware/lib/afterRender/minifyHTML.js",
+                    "options": {
+                        "removeComments": true,
+                        "removeCommentsFromCDATA": true,
+                        "collapseWhitespace": true,
+                        "collapseBooleanAttributes": true,
+                        "removeAttributeQuotes": true,
+                        "removeEmptyAttributes": true
+                    }
+                }
+            }
+        },
+        "router": {
+            "settings": {
+                "formats": ["json"],
+                "mountPaths": false,
+                "expressRouter": {
+                    "caseSensitive": false,
+                    "mergeParams": false,
+                    "strict": false
+                }
+            },
+            "routes": {
+                "cache": {
+                    "method": "GET",
+                    "path": "/core/cache/:category-:type",
+                    "params": {
+                        "type": "(.*)",
+                        "category": "(.*)"
+                    }
+                },
+                "status": {
+                    "method": "GET",
+                    "path": "/core/status"
+                },
+                "syslogErrors": {
+                    "method": "GET",
+                    "path": "/core/syslog-errors"
+                },
+                "clientSideError": {
+                    "method": "POST",
+                    "path": "/clientSideError"
+                }
+            }
+        },
+        "services": {
+            "helpers": {
+                "formatUrl": {
+                    "path": "./lib/formatUrl/index.js",
+                    "options": "{% app.router.routes %}"
+                },
+                "pipeline": {
+                    "path": "./lib/callback-pipeline/services-pipeline.js"
+                },
+                "apiCall": {
+                    "path": "./lib/apiCall/index.js",
+                    "options": {
+                        "headers": {
+                            "x-request-id": false
+                        },
+                        "proxyCache": false,
+                        "timeout": 30000,
+                        "json": true,
+                        "time": true,
+                        "pool": { "maxSockets": 1024 }
+                    }
+                }
+            }
+        },
+        "controllers": {
+            "paths": [],
+            "suffix": "Controller"
+        },
+        "models": {
+            "paths": [],
+            "suffix": "Model"
+        }
+    }
+}

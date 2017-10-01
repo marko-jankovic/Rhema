@@ -1,0 +1,34 @@
+{
+    "detail": {
+        "url": "{%  defaults.api.url %}",
+        "apikey": "{% defaults.api.key %}",
+        "resultProperties": {
+            "raw_dealername": "raw_dealername",
+            "raw_address": "raw_address",
+            "raw_city": "raw_city",
+            "raw_zip": "raw_zip",
+            "stock_number": "stock_number"
+        },
+        "map": {},
+        "additional_params": {}
+    },
+    "search": {
+        "url": "{% defaults.api.url %}",
+        "apikey": "{% defaults.api.key %}",
+        "additional_params": {},
+        "map": {},
+        "resultProperties": {
+            "carfax_vehicle_use_icon": "carfax_vehicle_use_icon",
+            "carfax_accident_icon": "carfax_accident_icon",
+            "carfax_service_record_icon": "carfax_service_record_icon",
+            "carfax_owners_icon": "carfax_owners_icon"
+        }
+    },
+    "facets": {
+        "url": "{% defaults.api.url %}",
+        "apikey": "{% defaults.api.key %}",
+        "additional_params": {},
+        "map": {},
+        "facetMap": {}
+    }
+}
