@@ -58,11 +58,18 @@
                         "tag": "{% framework.server.name %}"
                     }
                 },
-                "console": {
-                    "path": "./lib/logger/lib/console.js",
+                "devConsole": {
+                    "path": "./lib/logger/lib/devConsole.js",
                     "envLevel": "dev",
                     "options": {
                         "depth": null
+                    }
+                },
+                "jsonConsole": {
+                    "path": "./lib/logger/lib/jsonConsole.js",
+                    "envLevel": "!dev",
+                    "options": {
+                        "blackList": ["debug"]
                     }
                 },
                 "errorCatcher": {
@@ -220,7 +227,10 @@
                 },
                 "setNamespaces": {
                     "routes": ["*"],
-                    "path": "./lib/middleware/lib/preDispatch/setNamespaces.js"
+                    "path": "./lib/middleware/lib/preDispatch/setNamespaces.js",
+                    "options": {
+                        "xRequestIdName": false
+                    }
                 },
                 "setHeaders": {
                     "routes": ["!cache"],
@@ -450,9 +460,8 @@
                 "apiCall": {
                     "path": "./lib/apiCall/index.js",
                     "options": {
-                        "headers": {
-                            "x-request-id": false
-                        },
+                        "xRequestIdName": false,
+                        "headers": {},
                         "proxyCache": false,
                         "timeout": 30000,
                         "json": true,

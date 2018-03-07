@@ -15,7 +15,8 @@
     "posttest": "rm -rf ./build"
   },
   "pre-commit": [
-    "findleaks"
+    "findleaks",
+    "test"
   ],
   "dependencies": {
     "@risingstack/v8-profiler": "5.7.11",
