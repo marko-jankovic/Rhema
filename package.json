@@ -44,7 +44,7 @@
     "memwatch-ng": "1.2.0",
     "method-override": "^2.3.10",
     "mkdirp": "0.5.1",
-    "moment": "2.19.1",
+    "moment": "^2.21.0",
     "ms": "2.0.0",
     "node-expat": "^2.3.16",
     "node-statsd": "0.1.1",
