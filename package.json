@@ -67,7 +67,7 @@
   "devDependencies": {
     "chai": "4.1.0",
     "chalk": "2.3.0",
-    "docsify": "4.3.13",
+    "docsify": "4.6.8",
     "eslint": "3.19.0",
     "istanbul": "0.4.5",
     "mocha": "3.5.0",
