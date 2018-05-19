@@ -12,7 +12,9 @@
     "eslint:fix": "npm run eslint -- --fix",
     "postcoverage": "rm -rf ./build && rm -rf ./coverage",
     "docs": "docsify serve docs",
-    "posttest": "rm -rf ./build"
+    "posttest": "rm -rf ./build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "pre-commit": [
     "findleaks",
@@ -40,7 +42,7 @@
     "jade": "1.11.0",
     "js-combinatorics": "0.5.2",
     "json-markup": "1.1.0",
-    "lodash": "4.17.4",
+    "lodash": "4.17.5",
     "memwatch-ng": "1.2.0",
     "method-override": "^2.3.10",
     "mkdirp": "0.5.1",
@@ -62,7 +64,8 @@
     "vhost": "3.0.2",
     "xml2json": "0.11.0",
     "xss": "0.3.4",
-    "yamljs": "0.3.0"
+    "yamljs": "0.3.0",
+    "snyk": "^1.80.1"
   },
   "devDependencies": {
     "chai": "4.1.0",
@@ -74,5 +77,6 @@
     "node-notifier": "5.1.2",
     "pre-commit": "1.2.2",
     "sinon": "2.4.1"
-  }
+  },
+  "snyk": true
 }
