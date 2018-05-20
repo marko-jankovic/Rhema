@@ -101,7 +101,7 @@
             }
         },
         "latency": {
-          "envLevel": "!dev",
+          "envLevel": "dev",
           "ignore": []
         },
         "profiler": {
@@ -227,7 +227,7 @@
                 },
                 "setNamespaces": {
                     "routes": ["*"],
-                    "path": "./lib/middleware/lib/preDispatch/setNamespaces.js",
+                    "path": "./lib/middleware/lib/routeInvoked/setNamespaces.js",
                     "options": {
                         "xRequestIdName": false
                     }

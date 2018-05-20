@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "findleaks": "check-for-leaks",
-    "test": "mocha -R spec ./lib/**/tests/**/*-test.js",
+    "test": "mocha -R min ./lib/**/tests/**/*-test.js",
     "coverage": "istanbul cover _mocha -- -R spec ./lib/**/tests/**/*-test.js",
     "eslint": "eslint '*.js' lib --ignore-pattern 'lib/**/tests/**'",
     "eslint:fix": "npm run eslint -- --fix",
@@ -44,7 +44,7 @@
     "memwatch-ng": "1.2.0",
     "method-override": "^2.3.10",
     "mkdirp": "0.5.1",
-    "moment": "^2.21.0",
+    "moment": "2.21.0",
     "ms": "2.0.0",
     "node-expat": "^2.3.16",
     "node-statsd": "0.1.1",
@@ -71,7 +71,7 @@
     "eslint": "3.19.0",
     "istanbul": "0.4.5",
     "mocha": "3.5.0",
-    "node-notifier": "5.1.2",
+    "node-notifier": "^5.2.1",
     "pre-commit": "1.2.2",
     "sinon": "2.4.1"
   }
