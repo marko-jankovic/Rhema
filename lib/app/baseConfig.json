@@ -90,9 +90,9 @@
             }
         },
         "metrics": {
-            "port": 8125,
-            "host": "statsd.oak.vast.com",
-            "graphiteUrl": "http://graphite.vast.com",
+            "envLevel": "prod",
+            "port": 1234,
+            "host": "statsd.domain.com",
             "namespace": "nodejs.{% framework.server.name %}",
             "aliases": {},
             "client": {
