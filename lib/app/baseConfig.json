@@ -101,6 +101,7 @@
             }
         },
         "latency": {
+          "disabled": true,
           "envLevel": "dev",
           "ignore": []
         },
