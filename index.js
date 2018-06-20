@@ -6,5 +6,6 @@ module.exports = {
     Model: require('./lib/model/baseModel'),
     Utils: require('./lib/utils'),
     Services: require('./lib/services'),
-    Beatle: require('./lib/beatle')
+    Beatle: require('./lib/beatle'),
+    Registry: require('./lib/registry')
 };
