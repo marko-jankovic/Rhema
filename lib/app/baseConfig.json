@@ -90,6 +90,7 @@
             }
         },
         "metrics": {
+            "osHostName": null,
             "envLevel": "prod",
             "port": 1234,
             "host": "statsd.domain.com",

@@ -12,7 +12,9 @@
     "eslint:fix": "npm run eslint -- --fix",
     "postcoverage": "rm -rf ./build && rm -rf ./coverage",
     "docs": "docsify serve docs",
-    "posttest": "rm -rf ./build"
+    "posttest": "rm -rf ./build",
+    "testSpec": "bash -c 'mocha -R min --bail --exit ./lib/${0}/tests/**/*-test.js'",
+    "coverageSpec": "bash -c 'istanbul cover _mocha -- -R spec --bail --exit ./lib/${0}/tests/**/*-test.js'"
   },
   "pre-commit": [
     "findleaks",
