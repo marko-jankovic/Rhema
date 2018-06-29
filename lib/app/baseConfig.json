@@ -468,6 +468,7 @@
                         "timeout": 30000,
                         "json": true,
                         "time": true,
+                        "forever": true,
                         "pool": { "maxSockets": 1024 }
                     }
                 }
