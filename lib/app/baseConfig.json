@@ -204,6 +204,13 @@
                 }
             },
             "routeInvoked": {
+                "setNamespaces": {
+                    "routes": ["*"],
+                    "path": "./lib/middleware/lib/routeInvoked/setNamespaces.js",
+                    "options": {
+                        "xRequestIdName": false
+                    }
+                },
                 "requestTime": {
                     "routes": ["*"],
                     "path": "./lib/middleware/lib/routeInvoked/requestTime.js"
@@ -225,13 +232,6 @@
                         "forceWww": false,
                         "forceSecure": false,
                         "trailingSlash": true
-                    }
-                },
-                "setNamespaces": {
-                    "routes": ["*"],
-                    "path": "./lib/middleware/lib/routeInvoked/setNamespaces.js",
-                    "options": {
-                        "xRequestIdName": false
                     }
                 },
                 "setHeaders": {
