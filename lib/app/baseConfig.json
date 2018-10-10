@@ -11,7 +11,8 @@
             "gracefulRestart": {
                 "events": ["memoryUpperBound"],
                 "timeout": "{% 30 seconds | toMs %}"
-            }
+            },
+            "timeout": "{% 2 minutes | toMs %}"
         },
         "cluster": {
             "envLevel": "!dev",
