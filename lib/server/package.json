@@ -1,0 +1,13 @@
+{
+    "name": "@rhema/server",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "@rhema/utils": "*",
+        "@rhema/os": "*"
+    },
+    "devDependencies": {}
+}

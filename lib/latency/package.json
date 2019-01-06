@@ -1,0 +1,14 @@
+{
+    "name": "@rhema/latency",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "lodash": "4.17.10",
+        "@rhema/utils": "*",
+        "@rhema/timer": "*"
+    },
+    "devDependencies": {}
+}

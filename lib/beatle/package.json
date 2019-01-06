@@ -1,0 +1,14 @@
+{
+    "name": "@rhema/beatle",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "request": "2.87.0",
+        "@rhema/utils": "*",
+        "@rhema/registry": "*"
+    },
+    "devDependencies": {}
+}

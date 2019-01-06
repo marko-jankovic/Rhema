@@ -1,9 +1,11 @@
 {
-	"logger": {
-		"level": "debug",
-		"console": {
-			"color": true
-		},
-	    "name": "mare-care"
-	}
+    "prod": {
+        "logger": {
+            "level": "debug",
+            "console": {
+                "color": true
+            },
+            "name": "mare-care"
+        }
+    }
 }

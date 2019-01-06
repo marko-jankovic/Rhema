@@ -1,0 +1,12 @@
+{
+    "name": "@rhema/registry",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "cls-hooked": "4.2.2"
+    },
+    "devDependencies": {}
+}

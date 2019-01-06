@@ -1,0 +1,26 @@
+{
+    "name": "@rhema/app",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "@rhema/express": "*",
+        "@rhema/dispatcher": "*",
+        "@rhema/middleware": "*",
+        "@rhema/services": "*",
+        "@rhema/http": "*",
+        "@rhema/controller": "*",
+        "@rhema/config": "*",
+        "@rhema/logger": "*",
+        "@rhema/profiler": "*",
+        "@rhema/server": "*",
+        "@rhema/utils": "*",
+        "@rhema/metrics": "*",
+        "@rhema/cluster": "*",
+        "@rhema/os": "*",
+        "vhost": "3.0.2"
+    },
+    "devDependencies": {}
+}

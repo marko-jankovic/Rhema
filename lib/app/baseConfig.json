@@ -454,7 +454,7 @@
         "services": {
             "helpers": {
                 "formatUrl": {
-                    "path": "./lib/formatUrl/index.js",
+                    "path": "./lib/formatUrl",
                     "options": "{% app.router.routes %}"
                 },
                 "pipeline": {

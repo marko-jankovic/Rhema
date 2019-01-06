@@ -1,0 +1,19 @@
+{
+    "name": "@rhema/controller",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "@rhema/model": "*",
+        "@rhema/utils": "*",
+        "@rhema/loader": "*",
+        "@rhema/hooks": "*",
+        "@rhema/di": "*",
+        "@rhema/os": "*"
+    },
+    "devDependencies": {
+        "ouch": "1.1.0"
+    }
+}

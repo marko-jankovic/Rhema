@@ -1,0 +1,17 @@
+{
+    "name": "@rhema/callback-pipeline",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "async": "1.5.2",
+        "@rhema/timer": "*",
+        "@rhema/loader": "*",
+        "@rhema/utils": "*",
+        "@rhema/services": "*",
+        "@rhema/di": "*"
+    },
+    "devDependencies": {}
+}

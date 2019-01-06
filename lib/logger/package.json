@@ -1,0 +1,21 @@
+{
+    "name": "@rhema/logger",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "tracer": "0.8.15",
+        "stack-trace": "0.0.10",
+        "ain2": "2.0.0",
+        "@rhema/utils": "*",
+        "@rhema/beatle": "*",
+        "@rhema/loader": "*",
+        "@rhema/registry": "*"
+    },
+    "devDependencies": {
+        "chalk": "2.4.1",
+        "node-notifier": "^5.2.1"
+    }
+}

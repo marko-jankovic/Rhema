@@ -1,0 +1,10 @@
+{
+    "name": "@rhema/formatUrl",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {},
+    "devDependencies": {}
+}

@@ -1,0 +1,17 @@
+{
+    "name": "@rhema/profiler",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "mkdirp": "0.5.1",
+        "v8-profiler-next": "1.0.0",
+        "moment": "2.22.1",
+        "@airbnb/node-memwatch": "1.0.2",
+        "pidusage": "1.2.0",
+        "@rhema/utils": "*"
+    },
+    "devDependencies": {}
+}

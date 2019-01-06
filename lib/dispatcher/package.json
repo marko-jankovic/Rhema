@@ -1,0 +1,16 @@
+{
+    "name": "@rhema/dispatcher",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "lodash": "4.17.10",
+        "@rhema/utils": "*",
+        "@rhema/middleware": "*",
+        "@rhema/formatUrl": "*",
+        "js-combinatorics": "0.5.3"
+    },
+    "devDependencies": {}
+}

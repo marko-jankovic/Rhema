@@ -1,0 +1,17 @@
+{
+    "name": "@rhema/services",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "async": "1.5.2",
+        "@rhema/utils": "*",
+        "@rhema/di": "*",
+        "@rhema/latency": "*",
+        "@rhema/formatUrl": "*",
+        "@rhema/loader": "*"
+    },
+    "devDependencies": {}
+}

@@ -1,0 +1,14 @@
+{
+    "name": "@rhema/cluster",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "async": "1.5.2",
+        "moment": "2.22.1",
+        "@rhema/utils": "*"
+    },
+    "devDependencies": {}
+}

@@ -1,0 +1,17 @@
+{
+    "name": "@rhema/model",
+    "main": "index.js",
+    "version": "0.0.0",
+    "pre-commit": [
+        "test"
+    ],
+    "dependencies": {
+        "@rhema/callback-pipeline": "*",
+        "@rhema/services": "*",
+        "@rhema/loader": "*"
+    },
+    "devDependencies": {
+        "ouch": "1.1.0",
+        "@rhema/di": "*"
+    }
+}

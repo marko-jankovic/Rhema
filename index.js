@@ -7,5 +7,6 @@ module.exports = {
     Utils: require('./lib/utils'),
     Services: require('./lib/services'),
     Beatle: require('./lib/beatle'),
-    Registry: require('./lib/registry')
+    Registry: require('./lib/registry'),
+    Timer: require('./lib/timer')
 };
