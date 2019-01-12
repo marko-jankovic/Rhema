@@ -2,15 +2,12 @@
     "name": "@rhema/hooks",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
     "dependencies": {
         "@rhema/utils": "*",
         "@rhema/loader": "*",
         "async": "1.5.2"
     },
     "devDependencies": {
-        "ouch": "1.1.0"
+        "@rhema/testing": "*"
     }
 }

@@ -2,9 +2,9 @@
     "name": "@rhema/utils",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
+    "scripts": {
+        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./tests/*-test.js"
+    },
     "dependencies": {
         "mkdirp": "0.5.1",
         "yamljs": "0.3.0",
@@ -13,6 +13,6 @@
         "gleak": "0.5.0"
     },
     "devDependencies": {
-        "@rhema/di": "*"
+        "@rhema/testing": "*"
     }
 }

@@ -2,9 +2,9 @@
     "name": "@rhema/profiler",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
+    "scripts": {
+        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./tests/*-test.js"
+    },
     "dependencies": {
         "mkdirp": "0.5.1",
         "v8-profiler-next": "1.0.0",
@@ -13,5 +13,7 @@
         "pidusage": "1.2.0",
         "@rhema/utils": "*"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@rhema/testing": "*"
+    }
 }

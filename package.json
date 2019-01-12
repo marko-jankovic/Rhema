@@ -1,24 +1,26 @@
 {
     "name": "rhema",
+    "private": true,
     "author": "FE",
     "version": "0.8.7",
     "description": "Node framework based on Express.",
     "main": "index.js",
     "scripts": {
-        "findleaks": "check-for-leaks",
-        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./lib/**/tests/**/*-test.js",
         "coverage": "istanbul cover _mocha -- -R spec --bail --exit ./lib/**/tests/**/*-test.js",
-        "eslint": "eslint '*.js' lib --ignore-pattern 'lib/**/tests/**'",
-        "eslint:fix": "npm run eslint -- --fix",
+        "eslint": "eslint '*.js' lib --ignore-pattern 'lib/**/tests/**' --ignore-pattern 'lib/**/node_modules/**'",
+        "eslint:fix": "npm run eslint -- --fix --ignore-pattern 'lib/**/node_modules/**'",
         "postcoverage": "rm -rf ./build && rm -rf ./coverage",
         "docs": "docsify serve docs",
         "posttest": "rm -rf ./build",
-        "testSpec": "bash -c 'mocha -R min --bail --exit ./lib/${0}/tests/**/*-test.js'",
-        "coverageSpec": "bash -c 'istanbul cover _mocha -- -R spec --bail --exit ./lib/${0}/tests/**/*-test.js'"
+        "test:package": "bash -c 'mocha -R min --bail --exit ./lib/${0}/tests/**/*-test.js'",
+        "coverage:package": "bash -c 'istanbul cover _mocha -- -R spec --bail --exit ./lib/${0}/tests/**/*-test.js'",
+        "findleaks": "check-for-leaks",
+        "lerna:build": "rm -rf node_modules && lerna clean --yes && npm install && lerna bootstrap --hoist",
+        "lerna:test": "lerna run test --stream"
     },
     "pre-commit": [
         "findleaks",
-        "test"
+        "lerna:test"
     ],
     "dependencies": {
         "compression": "1.7.2",
@@ -33,14 +35,14 @@
         "serve-static": "1.13.2"
     },
     "devDependencies": {
-        "chai": "4.1.2",
         "check-for-leaks": "1.2.0",
         "docsify": "4.6.10",
         "eslint": "4.19.1",
-        "istanbul": "1.1.0-alpha.1",
         "lerna": "^3.8.4",
-        "mocha": "5.2.0",
         "pre-commit": "1.2.2",
-        "sinon": "5.0.7"
+        "mocha": "5.2.0",
+        "istanbul": "0.4.5",
+        "chai": "4.2.0",
+        "sinon": "7.2.2"
     }
 }

@@ -1,0 +1,172 @@
+#Admin Index
+
+admin_admin:
+    pattern:  /admin
+    defaults: { _controller: AdminBundle:Index:index }
+
+########################################################
+
+
+#Admin Author
+
+admin_author_show:
+    pattern: /admin/author/{slug}
+    defaults: { _controller: AdminBundle:Author:show }
+
+########################################################
+
+
+#Admin Category
+
+admin_category:
+    pattern: /admin/category
+    defaults: { _controller: AdminBundle:Category:index }
+
+admin_category_create:
+    pattern: /admin/category/new
+    defaults: { _controller: AdminBundle:Category:create }
+
+admin_category_edit:
+    pattern: /admin/category/edit/{id}
+    defaults: { _controller: AdminBundle:Category:edit }
+
+admin_category_delete:
+    pattern: /admin/category/delete/{id}
+    defaults: { _controller: AdminBundle:Category:delete }
+
+########################################################
+
+
+#Admin Comments
+
+admin_comments:
+    pattern: /admin/comments
+    defaults: { _controller: AdminBundle:Comments:index }
+
+admin_comments_delete:
+    pattern: /admin/comments/commentsDelete
+    defaults: { _controller: AdminBundle:Comments:commentsDelete }
+
+########################################################
+
+#Admin Profile
+
+admin_profile:
+    pattern: /admin/profile
+    defaults: { _controller: AdminBundle:Profile:index }
+
+admin_profile_update:
+    pattern: /admin/profile/update
+    defaults: { _controller: AdminBundle:Profile:update }
+
+########################################################
+
+
+#Admin Post
+
+admin_post:
+    pattern: /admin/post
+    defaults: { _controller: AdminBundle:Post:index }
+
+admin_post_show:
+    pattern: /admin/post/show-{slug}
+    defaults: { _controller: AdminBundle:Post:show }
+
+admin_post_delete:
+    pattern: /admin/post/delete/{id}
+    defaults: { _controller: AdminBundle:Post:delete }
+
+admin_post_delete_selected:
+    pattern: /admin/post/deleteSelected
+    defaults: { _controller: AdminBundle:Post:deleteSelected }
+
+admin_post_edit:
+    pattern: /admin/post/edit/{id}
+    defaults: { _controller: AdminBundle:Post:edit }
+
+admin_post_create:
+    pattern: /admin/post/create
+    defaults: { _controller: AdminBundle:Post:create }
+
+admin_post_create_comment:
+  pattern: /admin/{slug}/create-comment
+  defaults: { _controller: AdminBundle:Post:createComment }
+
+admin_post_category:
+    pattern: /admin/posts/category-{slug}
+    defaults: { _controller: AdminBundle:Post:category }
+
+########################################################
+
+
+#Admin User
+
+admin_user:
+    pattern:  /admin/users
+    defaults: { _controller: AdminBundle:User:users }
+
+admin_user_edit:
+    pattern:  /admin/user/edit/{id}
+    defaults: { _controller: AdminBundle:User:edit }
+
+admin_user_update:
+    pattern:  /admin/user/update/{id}
+    defaults: { _controller: AdminBundle:User:update }
+
+admin_user_account:
+    pattern:  /admin/account/{id}
+    defaults: { _controller: AdminBundle:User:account }
+
+admin_user_delete:
+  pattern:  /admin/user/delete/{id}
+  defaults: { _controller: AdminBundle:User:delete }
+
+admin_user_create:
+  pattern:  /admin/user/create
+  defaults: { _controller: AdminBundle:User:create }
+
+admin_user_status:
+    pattern:  /admin/user/status/{id}/{flag}
+    defaults: { _controller: AdminBundle:User:status }
+
+
+########################################################
+
+
+#Admin Login
+
+admin_user_login:
+  pattern:  /login
+  defaults: { _controller: AdminBundle:Login:login }
+
+admin_user_check:
+  pattern:  /loginCheck
+  defaults: { _controller: AdminBundle:Login:loginCheck }
+
+admin_user_logout:
+  pattern:  /logout
+  defaults: { _controller: AdminBundle:Login:logout }
+
+########################################################
+
+
+#Admin Register
+
+admin_user_register:
+    pattern:  /register
+    defaults: { _controller: AdminBundle:Register:register }
+
+admin_user_forgot:
+    pattern:  /forgot
+    defaults: { _controller: AdminBundle:Forgot:forgot }
+
+########################################################
+
+#Admin Settings
+
+admin_settings:
+    pattern: /admin/settings
+    defaults: { _controller: AdminBundle:Settings:index }
+
+
+########################################################

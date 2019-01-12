@@ -2,11 +2,13 @@
     "name": "@rhema/loader",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
+    "scripts": {
+        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./tests/*-test.js"
+    },
     "dependencies": {
         "@rhema/utils": "*"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@rhema/testing": "*"
+    }
 }

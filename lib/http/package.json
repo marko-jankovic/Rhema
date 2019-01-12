@@ -2,13 +2,12 @@
     "name": "@rhema/http",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
     "dependencies": {
         "useragent": "2.3.0",
         "on-headers": "1.0.1",
         "@rhema/services": "*"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@rhema/testing": "*"
+    }
 }

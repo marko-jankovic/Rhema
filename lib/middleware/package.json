@@ -2,9 +2,9 @@
     "name": "@rhema/middleware",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
+    "scripts": {
+        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./tests/*-test.js"
+    },
     "dependencies": {
         "@rhema/utils": "*",
         "@rhema/beatle": "*",
@@ -26,6 +26,7 @@
         "on-headers": "1.0.1"
     },
     "devDependencies": {
-        "ouch": "1.1.0"
+        "ouch": "2.0.0",
+        "@rhema/testing": "*"
     }
 }

@@ -2,9 +2,9 @@
     "name": "@rhema/dispatcher",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
+    "scripts": {
+        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./tests/*-test.js"
+    },
     "dependencies": {
         "lodash": "4.17.10",
         "@rhema/utils": "*",
@@ -12,5 +12,7 @@
         "@rhema/formatUrl": "*",
         "js-combinatorics": "0.5.3"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@rhema/testing": "*"
+    }
 }

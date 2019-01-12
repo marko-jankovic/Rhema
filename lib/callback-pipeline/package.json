@@ -2,9 +2,9 @@
     "name": "@rhema/callback-pipeline",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
+    "scripts": {
+        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./tests/*-test.js"
+    },
     "dependencies": {
         "async": "1.5.2",
         "@rhema/timer": "*",
@@ -13,5 +13,7 @@
         "@rhema/services": "*",
         "@rhema/di": "*"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@rhema/testing": "*"
+    }
 }

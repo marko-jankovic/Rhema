@@ -2,9 +2,9 @@
     "name": "@rhema/app",
     "main": "index.js",
     "version": "0.0.0",
-    "pre-commit": [
-        "test"
-    ],
+    "scripts": {
+        "test": "NODE_ENV=prod mocha -R spec --bail --exit ./tests/*-test.js"
+    },
     "dependencies": {
         "@rhema/express": "*",
         "@rhema/dispatcher": "*",
@@ -22,5 +22,7 @@
         "@rhema/os": "*",
         "vhost": "3.0.2"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@rhema/testing": "*"
+    }
 }
