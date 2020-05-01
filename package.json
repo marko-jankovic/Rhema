@@ -1,48 +1,52 @@
 {
-    "name": "rhema",
-    "private": true,
-    "author": "FE",
-    "version": "0.8.7",
-    "description": "Node framework based on Express.",
-    "main": "index.js",
-    "scripts": {
-        "coverage": "istanbul cover _mocha -- -R spec --bail --exit ./lib/**/tests/**/*-test.js",
-        "eslint": "eslint '*.js' lib --ignore-pattern 'lib/**/tests/**' --ignore-pattern 'lib/**/node_modules/**'",
-        "eslint:fix": "npm run eslint -- --fix --ignore-pattern 'lib/**/node_modules/**'",
-        "postcoverage": "rm -rf ./build && rm -rf ./coverage",
-        "docs": "docsify serve docs",
-        "posttest": "rm -rf ./build",
-        "test:package": "bash -c 'mocha -R min --bail --exit ./lib/${0}/tests/**/*-test.js'",
-        "coverage:package": "bash -c 'istanbul cover _mocha -- -R spec --bail --exit ./lib/${0}/tests/**/*-test.js'",
-        "findleaks": "check-for-leaks",
-        "lerna:build": "rm -rf node_modules && lerna clean --yes && npm install && lerna bootstrap --hoist",
-        "lerna:test": "lerna run test --stream"
-    },
-    "pre-commit": [
-        "findleaks",
-        "lerna:test"
-    ],
-    "dependencies": {
-        "compression": "1.7.2",
-        "cookie-parser": "1.4.3",
-        "cors": "2.8.4",
-        "csurf": "1.9.0",
-        "express": "4.16.4",
-        "helmet": "3.21.1",
-        "method-override": "^2.3.10",
-        "node-statsd": "0.1.1",
-        "pug": "2.0.3",
-        "serve-static": "1.13.2"
-    },
-    "devDependencies": {
-        "check-for-leaks": "1.2.0",
-        "docsify": "4.6.10",
-        "eslint": "4.19.1",
-        "lerna": "^3.8.4",
-        "pre-commit": "1.2.2",
-        "mocha": "5.2.0",
-        "istanbul": "0.4.5",
-        "chai": "4.2.0",
-        "sinon": "7.2.2"
-    }
+  "name": "rhema",
+  "private": true,
+  "author": "FE",
+  "version": "0.8.7",
+  "description": "Node framework based on Express.",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "istanbul cover _mocha -- -R spec --bail --exit ./lib/**/tests/**/*-test.js",
+    "eslint": "eslint '*.js' lib --ignore-pattern 'lib/**/tests/**' --ignore-pattern 'lib/**/node_modules/**'",
+    "eslint:fix": "npm run eslint -- --fix --ignore-pattern 'lib/**/node_modules/**'",
+    "postcoverage": "rm -rf ./build && rm -rf ./coverage",
+    "docs": "docsify serve docs",
+    "posttest": "rm -rf ./build",
+    "test:package": "bash -c 'mocha -R min --bail --exit ./lib/${0}/tests/**/*-test.js'",
+    "coverage:package": "bash -c 'istanbul cover _mocha -- -R spec --bail --exit ./lib/${0}/tests/**/*-test.js'",
+    "findleaks": "check-for-leaks",
+    "lerna:build": "rm -rf node_modules && lerna clean --yes && npm install && lerna bootstrap --hoist",
+    "lerna:test": "lerna run test --stream",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "pre-commit": [
+    "findleaks",
+    "lerna:test"
+  ],
+  "dependencies": {
+    "compression": "1.7.2",
+    "cookie-parser": "1.4.3",
+    "cors": "2.8.4",
+    "csurf": "1.9.0",
+    "express": "4.16.4",
+    "helmet": "3.21.1",
+    "method-override": "^2.3.10",
+    "node-statsd": "0.1.1",
+    "pug": "2.0.3",
+    "serve-static": "1.13.2",
+    "snyk": "^1.316.1"
+  },
+  "devDependencies": {
+    "check-for-leaks": "1.2.0",
+    "docsify": "4.6.10",
+    "eslint": "4.19.1",
+    "lerna": "^3.8.4",
+    "pre-commit": "1.2.2",
+    "mocha": "5.2.0",
+    "istanbul": "0.4.5",
+    "chai": "4.2.0",
+    "sinon": "7.2.2"
+  },
+  "snyk": true
 }
