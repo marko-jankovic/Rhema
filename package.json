@@ -35,7 +35,7 @@
     "node-statsd": "0.1.1",
     "pug": "2.0.3",
     "serve-static": "1.13.2",
-    "snyk": "^1.316.1"
+    "snyk": "^1.425.4"
   },
   "devDependencies": {
     "check-for-leaks": "1.2.0",
