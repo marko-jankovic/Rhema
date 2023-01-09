@@ -31,7 +31,7 @@
     "csurf": "1.9.0",
     "express": "4.16.4",
     "helmet": "3.21.1",
-    "method-override": "^2.3.10",
+    "method-override": "^3.0.0",
     "node-statsd": "0.1.1",
     "pug": "3.0.1",
     "serve-static": "1.13.2",
