@@ -1,0 +1,7 @@
+{
+    "topCities": {
+        "options": {
+            "url": "${ 1321312 | toUrl }"
+        }
+    }
+}

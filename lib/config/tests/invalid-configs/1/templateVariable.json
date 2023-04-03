@@ -1,0 +1,7 @@
+{
+    "topCities": {
+        "options": {
+            "apikey": "${ defaults.api.key }"
+        }
+    }
+}

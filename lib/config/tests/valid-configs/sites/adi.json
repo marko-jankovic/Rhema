@@ -8,9 +8,9 @@
     },
     "app": {
         "vhosts": [
-            "{% defaults.name %}.test-local.test.com",
-            "{% defaults.name %}.test-alpha.test.com",
-            "{% defaults.name %}.test-beta.test.com"
+            "${ defaults.name }.test-local.test.com",
+            "${ defaults.name }.test-alpha.test.com",
+            "${ defaults.name }.test-beta.test.com"
         ]
     }
 }

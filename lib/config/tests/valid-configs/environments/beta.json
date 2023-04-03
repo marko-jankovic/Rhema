@@ -1,0 +1,9 @@
+{
+    "logger": {
+        "level": "debug",
+        "console": {
+            "color": true
+        },
+        "name": "mare-care-beta"
+    }
+}

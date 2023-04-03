@@ -262,7 +262,7 @@
                     "path": "cors",
                     "protectArguments": false,
                     "options": {
-                      "origin": "*",
+                      "origin": true,
                       "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
                       "preflightContinue": false,
                       "optionsSuccessStatus": 204
@@ -298,7 +298,10 @@
                     "routes": ["!clientSideError"],
                     "path": "csurf",
                     "options": {
-                        "cookie": true
+                        "cookie": {
+                          "httpOnly": true,
+                          "secure": true
+                        }
                     }
                 },
                 "statusInfo": {

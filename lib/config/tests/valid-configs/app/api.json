@@ -1,7 +1,7 @@
 {
     "detail": {
-        "url": "{%  defaults.api.url %}",
-        "apikey": "{% defaults.api.key %}",
+        "url": "${  defaults.api.url }",
+        "apikey": "${ defaults.api.key }",
         "resultProperties": {
             "raw_dealername": "raw_dealername",
             "raw_address": "raw_address",
@@ -13,8 +13,8 @@
         "additional_params": {}
     },
     "search": {
-        "url": "{% defaults.api.url %}",
-        "apikey": "{% defaults.api.key %}",
+        "url": "${ defaults.api.url }",
+        "apikey": "${ defaults.api.key }",
         "additional_params": {},
         "map": {},
         "resultProperties": {
@@ -25,8 +25,8 @@
         }
     },
     "facets": {
-        "url": "{% defaults.api.url %}",
-        "apikey": "{% defaults.api.key %}",
+        "url": "${ defaults.api.url }",
+        "apikey": "${ defaults.api.key }",
         "additional_params": {},
         "map": {},
         "facetMap": {}
