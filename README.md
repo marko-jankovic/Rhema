@@ -1,8 +1,6 @@
 # Rhema - Node framework based on Express.js
 
 
-
-
 ## Work in progress...
 
 https://marko-jankovic.github.io/Rhema/
