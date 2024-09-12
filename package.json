@@ -29,12 +29,12 @@
     "cookie-parser": "1.4.3",
     "cors": "2.8.4",
     "csurf": "1.9.0",
-    "express": "4.17.3",
+    "express": "4.21.0",
     "helmet": "3.21.1",
     "method-override": "^3.0.0",
     "node-statsd": "0.1.1",
     "pug": "3.0.1",
-    "serve-static": "1.13.2",
+    "serve-static": "1.16.1",
     "snyk": "^1.1064.0"
   },
   "devDependencies": {
